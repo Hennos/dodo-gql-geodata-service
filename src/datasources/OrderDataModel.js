@@ -68,12 +68,12 @@ class OrderDataModel extends DataModel {
   }
 
   async getOrder(id) {
-    const data = [mockOrders.find(({ order: stored }) => stored === id)];
+    // const data = [mockOrders.find(({ order: stored }) => stored === id)];
 
-    // const data = await this.getData({
-    //   queue: queues.GET_ORDERS,
-    //   message: { key: requestOrdersActions.GET_ORDERS, order: id },
-    // });
+    const data = await this.getData({
+      queue: queues.GET_ORDERS,
+      message: { key: requestOrdersActions.GET_ORDERS, order: id },
+    });
 
     if (!data[0]) throw Error('Not getting data from api request');
 
@@ -81,12 +81,12 @@ class OrderDataModel extends DataModel {
   }
 
   async getOrders() {
-    const data = mockOrders;
+    // const data = mockOrders;
 
-    // const data = await this.getData({
-    //   queue: queues.GET_ORDERS,
-    //   message: { key: requestOrdersActions.GET_ORDER },
-    // });
+    const data = await this.getData({
+      queue: queues.GET_ORDERS,
+      message: { key: requestOrdersActions.GET_ORDER },
+    });
 
     if (!data) throw Error('Not getting data from api request');
 
